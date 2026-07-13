@@ -1,11 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-</module>
+ublic class Main {
+    public static void main(String[] args) {
+        Library library = new Library();
+        Scanner scanner = new Scanner(System.in);
+        int choice = -1;
+
+        System.out.println("Welcome to the Library Information System!");
+
+        while (choice != 0) {
+            System.out.println("\n=========================");
+            System.out.println("        MAIN MENU        ");
+            System.out.println("=========================");
+            System.out.println("1. Add a book");
+            System.out.println("2. List all books");
+            System.out.println("3. Borrow a book");
+            System.out.println("4. Return a book");
+            System.out.println("5. Search a book");
+            System.out.println("0. Exit");
+            System.out.print("Enter your option: ");
+
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid execution format. Please enter a numerical option (0-5).");
+                continue;
+            }
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter book title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter book author: ");
+                    String author = scanner.nextLine();
+                    library.addBook(new Book(title, author));
+                    break;
+
+                case 2:
+                    library.listBooks();
+                    break;
+
+                case 3:
+                    System.out.print("Enter the title of the book you want to borrow: ");
+                    String borrowTitle = scanner.nextLine();
+                    library.borrowBook(borrowTitle);
+                    break;
+
+                case 4:
+                    System.out.print("Enter the title of the book you are returning: ");
+                    String returnTitle = scanner.nextLine();
+                    library.returnBook(returnTitle);
+                    break;
+
+                case 5:
+                    System.out.print("Enter the title of the book to lookup: ");
+                    String searchTitle = scanner.nextLine();
+                    library.searchBook(searchTitle);
+                    break;
+
+                case 0:
+                    System.out.println("Exiting the program. Thank you for utilizing the Library System!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice selection. Out of range boundaries (0-5).");
+            }
+        }
+        scanner.close();
+    }
+}
