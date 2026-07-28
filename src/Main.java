@@ -1,13 +1,69 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+public class Main {
+    public static void main(String[] args) {
+        Library library = new Library();
+        Scanner scanner = new Scanner(System.in);
+        int choice = -1;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+        System.out.println("Welcome to the Library Information System!");
+
+        while (choice != 0) {
+            System.out.println("\n=========================");
+            System.out.println("        MAIN MENU        ");
+            System.out.println("=========================");
+            System.out.println("1. Add a book");
+            System.out.println("2. List all books");
+            System.out.println("3. Borrow a book");
+            System.out.println("4. Return a book");
+            System.out.println("5. Search a book");
+            System.out.println("0. Exit");
+            System.out.print("Enter your option: ");
+
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid execution format. Please enter a numerical option (0-5).");
+                continue;
+            }
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter book title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter book author: ");
+                    String author = scanner.nextLine();
+                    library.addBook(new Book(title, author));
+                    break;
+
+                case 2:
+                    library.listBooks();
+                    break;
+
+                case 3:
+                    System.out.print("Enter the title of the book you want to borrow: ");
+                    String borrowTitle = scanner.nextLine();
+                    library.borrowBook(borrowTitle);
+                    break;
+
+                case 4:
+                    System.out.print("Enter the title of the book you are returning: ");
+                    String returnTitle = scanner.nextLine();
+                    library.returnBook(returnTitle);
+                    break;
+
+                case 5:
+                    System.out.print("Enter the title of the book to lookup: ");
+                    String searchTitle = scanner.nextLine();
+                    library.searchBook(searchTitle);
+                    break;
+
+                case 0:
+                    System.out.println("Exiting the program. Thank you for utilizing the Library System!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice selection. Out of range boundaries (0-5).");
+            }
+        }
+        scanner.close();
     }
 }
