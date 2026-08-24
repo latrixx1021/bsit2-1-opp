@@ -1,11 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-</module>
+  public abstract class Account {
+
+    private String accountNumber;
+    private String ownerName;
+    private double balance;
+
+    public Account(String accountNumber, String ownerName, double openingBalance) {
+        // Validate accountNumber
+        // Validate ownerName
+        // Validate openingBalance
+
+        this.accountNumber = accountNumber;
+        this.ownerName = ownerName;
+        this.balance = openingBalance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        // Reject amount <= 0
+        // Add amount to balance
+    }
+
+    public void withdraw(double amount) throws InsufficientFundsException {
+        // Reject amount <= 0
+        // Check if balance is enough
+        // Subtract amount
+    }
+
+    public abstract String getAccountType();
+
+    protected void applyWithdrawal(double amount) {
+        // subtract amount from balance
+    }
+
+    @Override
+    public String toString() {
+        return getAccountType() + " " + accountNumber
+                + " (" + ownerName + ")";
+    }
+}
+
+
+double remaining = getBalance() - amount;
+
+if (remaining < -overdraftLimit) {
+    // throw InsufficientFundsException
+}
+
+// otherwise:
+applyWithdrawal(amount);
