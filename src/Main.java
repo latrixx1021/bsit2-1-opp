@@ -251,3 +251,21 @@ private static double readDouble(Scanner in) {
     }
 }
 }
+
+# LICEO RIDE - Semi-Final Laboratory Exam Answers
+
+Name: JAN MICHAEL GAGARRA
+Section:BSIT 2-1
+
+## Question 1
+Why is the list in RideManager typed ArrayList<Ride> and not ArrayList<Jeepney>?
+
+Your answer:
+The list is typed as ArrayList<Ride> because Ride is the parent class, so the list can store different types of rides that inherit from Ride, including Jeepney. This allows polymorphism and makes the RideManager more flexible.
+
+## Question 2
+In showStudentDiscounts(), why must you check instanceof before the cast?
+
+Your answer:
+
+We must check instanceof before casting to make sure the object is actually a ShawStudentDiscount.
